@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies (Flask, requests, boto3 for AWS SQS)
-RUN pip install --no-cache-dir Flask requests boto3
+RUN pip install --no-cache-dir Flask requests boto3 google-cloud-storage
 
 # Expose port 8080
 EXPOSE 8080
