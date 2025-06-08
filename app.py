@@ -1,6 +1,4 @@
-from flask import Flask, send_file, request, jsonify, redirect, Response
-from google.cloud import storage
-import os
+from flask import Flask, send_file, request, jsonify, redirect
 import requests
 
 app = Flask(__name__)
@@ -25,19 +23,6 @@ def proxy_submit():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/image/<filename>')
-def serve_private_image(filename):
-    try:
-        storage_client = storage.Client()
-        bucket = storage_client.bucket("capstone-food-order")
-        blob = bucket.blob(filename)
-
-        stream = blob.open("rb")
-        content_type = blob.content_type or "application/octet-stream"
-        return Response(stream, content_type=content_type)
-    except Exception as e:
-        return jsonify({"error": f"Could not serve image: {str(e)}"}), 500
-
 
 # Catch all other routes to serve SPA
 @app.route('/<path:path>')
@@ -45,5 +30,4 @@ def catch_all(path):
     return send_file('index.html')
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=8080)
