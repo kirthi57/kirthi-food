@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # 🔁 Backend API behind internal load balancer
-BACKEND_URL = "http://192.168.20.14:8080"
+BACKEND_URL = "http://192.168.10.2:8080"
 
 @app.route('/')
 def index():
