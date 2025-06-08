@@ -15,6 +15,7 @@ steps:
         'asia-south1-docker.pkg.dev/mindful-phalanx-462010-e0/my-repo1/food:latest'
       ]
 
+  # ✅ Updated Cloud Run deploy step with VPC connector
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -28,7 +29,11 @@ steps:
         'asia-south1',
         '--platform',
         'managed',
-        '--allow-unauthenticated'
+        '--allow-unauthenticated',
+        '--vpc-connector',
+        'capstone-connector',
+        '--egress-settings',
+        'all-traffic'
       ]
 
 images:
@@ -36,3 +41,4 @@ images:
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
