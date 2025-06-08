@@ -16,25 +16,26 @@ steps:
       ]
 
   # ✅ Updated Cloud Run deploy step with VPC connector
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args:
-      [
-        'run',
-        'deploy',
-        'food-frontend',
-        '--image',
-        'asia-south1-docker.pkg.dev/mindful-phalanx-462010-e0/my-repo1/food:latest',
-        '--region',
-        'asia-south1',
-        '--platform',
-        'managed',
-        '--allow-unauthenticated',
-        '--vpc-connector',
-        'capstone-connector',
-        '--egress-settings',
-        'all-traffic'
-      ]
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+    [
+      'run',
+      'deploy',
+      'food-frontend',
+      '--image',
+      'asia-south1-docker.pkg.dev/mindful-phalanx-462010-e0/my-repo1/food:latest',
+      '--region',
+      'asia-south1',
+      '--platform',
+      'managed',
+      '--allow-unauthenticated',
+      '--vpc-connector',
+      'capstone-connector',
+      '--vpc-egress',
+      'all-traffic'
+    ]
+
 
 images:
   - asia-south1-docker.pkg.dev/mindful-phalanx-462010-e0/my-repo1/food:latest
