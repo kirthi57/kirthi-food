@@ -37,6 +37,8 @@ steps:
         '--vpc-egress',
         'all-traffic'
       ]
+    retry:
+      count: 3
 
 images:
   - asia-south1-docker.pkg.dev/mindful-phalanx-462010-e0/my-repo1/food:latest
