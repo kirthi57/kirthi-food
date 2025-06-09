@@ -15,7 +15,6 @@ steps:
         'asia-south1-docker.pkg.dev/mindful-phalanx-462010-e0/my-repo1/food:latest'
       ]
 
-  # ✅ Correct indentation for deploy step
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -30,6 +29,9 @@ steps:
         '--platform',
         'managed',
         '--allow-unauthenticated',
+        '--port',
+        '8080',
+        '--update-labels=managed_prometheus=true',
         '--vpc-connector',
         'capstone-connector',
         '--vpc-egress',
